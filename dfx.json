@@ -1,0 +1,13 @@
+{
+    "canisters": {
+        "azle_queue_system": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle azle_queue_system",
+            "wasm": ".azle/azle_queue_system/azle_queue_system.wasm",
+            "gzip": true
+        }
+    }
+}
+

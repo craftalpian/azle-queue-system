@@ -1,0 +1,7 @@
+service: () -> {
+    addMyQueue: (text) -> (text);
+    addQueue: (principal, text) -> (text);
+    deleteQueue: (principal) -> (text);
+    getMyQueue: (principal) -> (text) query;
+    totalQueue: () -> (text) query;
+}
