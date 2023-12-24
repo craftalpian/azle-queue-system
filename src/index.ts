@@ -22,19 +22,26 @@ let UserQueue = StableBTreeMap<Id, Type>(0);
 
 export default Canister({
   deleteQueue: update([Id], text, (id) => {
-    UserQueue.remove(id);
+    const removedType = UserQueue.remove(id);
 
-    return `Berhasil menghapus ${id} dari antrian`;
+    if (removedType) {
+      return `Berhasil menghapus ${id} dari antrian`;
+    } else {
+      return `ID ${id} tidak ditemukan dalam antrian`;
+    }
   }),
   // Menampilkan semua antrian
   totalQueue: query([], text, () => {
-    // console.log(UserQueue.items());
     return `Total antrian ${UserQueue.len()}`;
   }),
   getMyQueue: query([Id], text, (id) => {
     const myType = UserQueue.get(id);
 
-    return `Urutan antrian ${id} adalah ${myType}`;
+    if (myType) {
+      return `Urutan antrian ${id} adalah ${myType}`;
+    } else {
+      return `ID ${id} tidak ditemukan dalam antrian`;
+    }
   }),
   addMyQueue: update([Type], text, (type) => {
     // Mendapatkan total antrian saat ini
